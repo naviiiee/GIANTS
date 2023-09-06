@@ -36,7 +36,7 @@ public class GorderAdminController {
 	private GorderService orderService;
 	
 	//카테고리 별 매출
-	@RequestMapping("/gorder/adminMypageSaleManage.do")
+	@RequestMapping("/member/adminMypageSaleManageDetail.do")
 	public String SaleListGoods(HttpSession session, Model model) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<GorderDetailVO> categoryList = null;
@@ -72,6 +72,7 @@ public class GorderAdminController {
 		List<Integer> months = new ArrayList<Integer>();
 		
 		if(order_revenue>0) {
+			//올해 연도
 			Date now = new Date();
 			SimpleDateFormat sf = new SimpleDateFormat("YYYY");
 			String year = sf.format(now);

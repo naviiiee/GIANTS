@@ -4,18 +4,22 @@ $(function(){
 	$('#goods_direct').submit(function(event){
 		event.preventDefault(); // 기본 클릭 동작을 막음
 		 
-		if (optNumValue === "") {
-	        alert("옵션을 선택하세요.");
-	        return false;
-	    }
+		// 선택된 옵션 정보 가져오기
+		var selectedOption = $('#optionSelect option:selected');
+		var optNumValue = selectedOption.val();
+		console.log("Selected opt_num:", optNumValue);		
+		    // 옵션 선택 여부 확인
+		    if (optNumValue === "") {
+		        alert("옵션을 선택하세요.");
+		        return false;
+		    }
+		
+		
 		if($('#order_quantity').val() == ''){
 			alert('수량을 입력하세요');
 			$('#order_quantity').focus();
 			return false;
 		}
-		
-	    var selectedOption = $('#optionSelect option:selected');
-	    var optNumValue = selectedOption.val();
 		let form_data = {
 			//gcartVO
 		    goods_num: $('#goods_num').val(),
@@ -62,12 +66,6 @@ $(function(){
 	//장바구니 등록
 	$('#goods_cart').submit(function(event){
 		
-		if($('#order_quantity').val() == ''){
-			alert('수량을 입력하세요');
-			$('#order_quantity').focus();
-			return false;
-		}
-		
 		 // 선택된 옵션 정보 가져오기
 		var selectedOption = $('#optionSelect option:selected');
 		var optNumValue = selectedOption.val();
@@ -77,6 +75,15 @@ $(function(){
 		        alert("옵션을 선택하세요.");
 		        return false;
 		    }
+		
+		
+		if($('#order_quantity').val() == ''){
+			alert('수량을 입력하세요');
+			$('#order_quantity').focus();
+			return false;
+		}
+		
+		
 		
 		let form_data = {
 		    goods_num: $('#goods_num').val(),
