@@ -33,16 +33,26 @@ input[type="button"] {
 
 .align-right{
 	text-align: right;
-	
-
 }
+a:hover{
+	color :  #dd032f;
+}
+h3{
+	color : black;
+}
+
  </style>
 <div class="mypage-top2">
 	<div class="mypage-top-title">
 		<img src="${pageContext.request.contextPath}/images/title_icon.gif" class="title-img">
-		<h2>매출관리</h2>
+		<h2>총 매출</h2>
 		<p>자이언츠 총 매출 정보입니다.</p>
 	</div>
+</div>
+
+<div class="align-center">
+		<h3><a href="${pageContext.request.contextPath}/member/adminMypageSaleManage.do">총 매출</a>
+		 / <a href="${pageContext.request.contextPath}/member/adminMypageSaleManageDetail.do">상세 매출</a></h3>
 </div>
 
 <div class="mypage-form-test">
@@ -67,9 +77,6 @@ input[type="button"] {
 		</c:if>
 	</c:forEach>
 	
-	<div class="align-center">
-		<h3><a href="${pageContext.request.contextPath}/member/adminMypageSaleManage.do">총 매출</a> / <a href="${pageContext.request.contextPath}/gorder/adminMypageSaleManage.do">상세 매출</a></h3>
-	</div>
 	<br>
 
 	<div class="align-center">
