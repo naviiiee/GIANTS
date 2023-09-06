@@ -16,6 +16,9 @@ create table G_ORDER(
 	order_message varchar2(1300),  --배송 메세지
 	order_total number(9) not null, --총 주문 가격
 	merchant_uid number not null, --가맹점 주문번호API
+	goods_num number not null,
+	used_point number, 
+	order_dcost number default 3000 not null,
 	CONSTRAINT G_ORDER_FK1 foreign key (mem_num) references member (mem_num)
 );
 CREATE SEQUENCE G_ORDER_SEQ;
