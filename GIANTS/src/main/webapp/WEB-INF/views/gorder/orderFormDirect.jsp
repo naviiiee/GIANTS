@@ -214,7 +214,9 @@ background-color : #dd032f;
 			<input type="radio" path="order_payment" id="payment1" value="2">무통장입금 <!-- 무통장이면 결제 정보에서 쓴 이름 가져옴 -->
 			<input type="radio" path="order_payment" id="payment2" value="1">카드결제                
 		</li>
-		
+		<div id="payInfo" style="display : none;'">
+			<button class="btn-api" id="paymentButton" onclick="requestPay()">주문API</button>
+		</div>
 		<div id="bankInfo" style="display: none;">
 			<select>
 				<option class="align-center">====3시간 이내로 입금하지 않으면 자동취소됩니다.====</option>

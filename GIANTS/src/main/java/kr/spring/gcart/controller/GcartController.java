@@ -41,11 +41,7 @@ public class GcartController {
 	private GcartService cartService;
 	@Autowired
 	private GoodsService goodsService;
-	@Autowired
-	private GorderService orderService;
 	
-
-
 	/*
 	 * ======================== 장바구니 목록 조회 ========================
 	 */
@@ -64,7 +60,6 @@ public class GcartController {
 		if (all_total > 0) {
 			list = cartService.getListCart(map);
 		}
-		log.debug("<<장바구니 목록 조회>> : " + list);
 		model.addAttribute("all_total", all_total);
 		model.addAttribute("list", list);
 
@@ -101,11 +96,8 @@ public class GcartController {
 				// 굿즈의 옵션 별 재고 가져오기 
 				int db_stock = cartService.getStockByoption(db_goods.getGoods_num(), cartVO.getOpt_num());
 				
-				log.debug("<<굿즈 옵션별 재고 >> : " + db_stock);
-				
 				//구매 수량 합산(기존 장바구니에 있던 수량 + 새로 장바구니에 넣은 수량)
 				int order_quantity = db_cart.getOrder_quantity() + cartVO.getOrder_quantity();
-				log.debug("<<장바구니+구매 수량 >> : " + order_quantity);
 				
 				if(db_stock < order_quantity) {
 					mapJson.put("result", "overquantity"); //재고가 장바구니에 담은 수량보다 작은경우
@@ -130,17 +122,10 @@ public class GcartController {
 	public Map<String, String> submitModify(GcartVO cartVO, HttpSession session) {
 		Map<String, String> mapJson = new HashMap<String, String>();
 		// 재고를 구하기 위해 상품 정보 호출
-		log.debug("<<장바구니 수정 - cartVO>> : " + cartVO); 
 		
 		 GcartVO db_cart = cartService.getCart(cartVO); 
 		 
-		 log.debug("<<장바구니 수정 - db_cart>> : " + db_cart); 
-		 
 		 GoodsVO db_goods = goodsService.selectGoods(db_cart.getGoods_num());
-		 log.debug("<< db_cart >> : " + db_cart); 
-		 log.debug("<< db_goods >> : " + db_goods);
-
-		
 		
 		MemberVO user = (MemberVO) session.getAttribute("user");
 		if (user == null) {
@@ -149,9 +134,6 @@ public class GcartController {
 			cartVO.setMem_num(user.getMem_num()); 
 			// 현재 구매하고자 하는 상품의 재고수를 구해야하므로 상품 정보를 가져오자
 			GoodsVO goods = goodsService.selectGoods(cartVO.getGoods_num());
-			// 굿즈의 옵션 별 재고 가져오기 
-			log.debug("<<재고 가져오기 goods.getGoods_num() >> : " + goods.getGoods_num());
-			log.debug("<<재고 가져오기 cartVO.getOpt_num() >> : " + cartVO.getOpt_num());
 			
 			int db_stock = cartService.getStockByoption(goods.getGoods_num(), db_cart.getOpt_num());
 			

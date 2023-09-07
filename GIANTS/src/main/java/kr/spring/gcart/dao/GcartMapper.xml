@@ -8,9 +8,8 @@
 		<result property="goodsOptionVO.goods_stock" column="goods_stock"/>
 	</resultMap>
 	
-	
+	<!-- 주문폼에서 장바구니 정보를 읽어올 때 cart_numbers 사용, 배열에 넣어주는 작업b-->
 	<sql id="cartCondition">
-	/*주문폼에서 장바구니 정보를 읽어올 때 cart_numbers 사용, 배열에 넣어주는 작업*/
 		<if test="cart_numbers!=null and cart_numbers.length>0">
 			AND cart_num IN
 			<foreach item="goods" index="index" collection="cart_numbers"
@@ -19,8 +18,6 @@
 			</foreach>
 		</if>
 	</sql>
-
-	
 	
 	<!-- 장바구니에 상품 등록 -->
 	<insert id="insertCart" parameterType="GcartVO">
@@ -55,7 +52,7 @@
         ORDER BY g.goods_num ASC
 	</select> 
 
-	<!-- 회원번호 별 총 구매금액 (장바구니에서는 포인트 차감이 안되므로 상품 정가만 보여주면 됨) -->
+	<!-- 회원번호 별 총 구매금액 -->
 	<select id="getTotalByMem_num" parameterType="map"
 		resultType="integer">
 		SELECT NVL(SUM(sub_total),0) 

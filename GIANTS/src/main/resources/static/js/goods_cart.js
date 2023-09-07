@@ -83,13 +83,11 @@ $(function(){
 			return false;
 		}
 		
-		
-		
 		let form_data = {
 		    goods_num: $('#goods_num').val(),
 		    goods_dprice: $('#goods_price').val(),
 		    order_quantity: $('#order_quantity').val(),
-		    opt_num: optNumValue // 이 부분 추가
+		    opt_num: optNumValue
 		};
 		
 		//장바구니
@@ -179,7 +177,7 @@ $(function(){
 		if($(this).is(':checked')){
 			//체크하면 수량,가격,배송비,개별 상품 합계가 정확하게 표시
 			$(this).parents('tr').find('.goods-setting').remove();
-			//$(this).parents('tr').find('.goods_dprice').text(Number($(this).parents('tr').find('.goods_price').attr('data-dprice')).toLocaleString()+'원'); //NAN왜?!
+			$(this).parents('tr').find('.goods_dprice').text(Number($(this).parents('tr').find('.goods_dprice').attr('data-dprice')).toLocaleString()+'원'); //NAN왜?!
 			$(this).parents('tr').find('.goods_dprice').show();
 			//$(this).parents('tr').find('.order_quantity').show();
 			$(this).parents('tr').find('.order_point').show();

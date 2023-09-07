@@ -13,9 +13,9 @@ import kr.spring.gorder.vo.GorderDetailVO;
 import kr.spring.gorder.vo.GorderVO;
 
 @Service
-@Transactional
+@Transactional  
 public class GorderServiceImpl implements GorderService{
-	  
+	      
 	@Autowired
 	GorderMapper orderMapper;
 

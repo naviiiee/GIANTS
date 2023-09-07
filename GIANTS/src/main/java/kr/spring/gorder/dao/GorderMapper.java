@@ -12,12 +12,13 @@ import org.apache.ibatis.annotations.Update;
 import kr.spring.gorder.vo.GorderVO;
 import kr.spring.gcart.vo.GcartVO;
 import kr.spring.gorder.vo.GorderDetailVO;
-
+   
 @Mapper
 public interface GorderMapper {
 	//바로구매 시 장바구니 null체크 
 	@Select("select * from g_cart where mem_num=#{mem_num}")
 	public List<GcartVO> CheckCartToDirectBuy(int mem_num);
+	
 	
 	//===============================
 	//주문 목록 모든 리스트
